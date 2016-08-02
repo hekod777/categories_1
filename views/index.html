@@ -8,6 +8,9 @@
         <li>
 			<a href = './catergories/{{item}}'>{{item}}<a>
         </br>
+        <form action = '/index/{{item}}?_method=DELETE' method = 'Post'>
+        <button type = 'sumbit'>Delete this Category</button>
+        </form>
         </li>
         {% endfor %}
 </ul>

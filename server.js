@@ -44,6 +44,10 @@ app.post('/index',function(req,res,next){
 	res.redirect('/');	
 })
 
+app.delete('/index/:name', function (req, res, next){
+	Product.deleteCatergory(req.params.name);
+	res.redirect('/');
+})
 
 
 

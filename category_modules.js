@@ -29,8 +29,11 @@ addItem: function(catergory,name){
 	product[catergory].push({name:name});
 },
 
+
+
 deleteCatergory: function(name){
-	delete getProducts[name];
+	delete product[name];
+	
 },
 
 deleteItem: function (catergory,name){
