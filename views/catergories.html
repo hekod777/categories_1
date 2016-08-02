@@ -1,0 +1,37 @@
+{% extends './layout.html'%}
+{% block main %}
+
+<ul>
+        {% for item in product %}
+        <li>
+			<a href = './{{item}}'>{{item}}<a>
+        </br>
+        </li>
+        {% endfor %}
+</ul>
+
+
+
+
+</p> here are the products in {{catergory}} catergory</p>
+
+<ul>
+	{% for item in thecatergory%}
+    <li>
+    	{{item.name}}
+        <br>
+        <form action = '/catergories/{{item.name}}?_method=DELETE' method = 'POST'>
+        <button type = 'submit'> Delete this item</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+
+<form action = '/catergories/' method = 'POST'>
+<label for = 'name_field'> Add a new item to this catergory: </label>
+<input name = 'name' type = 'text' id = 'name_field'/>
+<input type = 'submit' value = 'now sumbit!'>
+</form>
+
+{% endblock %}

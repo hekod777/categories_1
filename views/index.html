@@ -1,0 +1,23 @@
+{% extends './layout.html' %}
+
+{%block main%}
+<p>this is the home page</p>
+
+<ul>
+        {% for item in product %}
+        <li>
+			<a href = './catergories/{{item}}'>{{item}}<a>
+        </br>
+        </li>
+        {% endfor %}
+</ul>
+		
+
+<form action = '/index' method = 'POST'>
+<label for = 'name_field'>Add catergory name: </label>
+<input name = 'name' type = 'text' id = 'name_field'/>
+<input type = 'submit' value = 'sumbit!'>
+</form>
+
+
+{%endblock%}
