@@ -3,7 +3,7 @@ var swig = require('swig');
 swig.setDefaults({cache:false});
 var app = express();
 var path = require('path');
-var Product = require('./category_modules.js');
+var db = require('./db');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
@@ -16,39 +16,13 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(methodOverride('_method'));
 
-var temp;
+app.get('/', function (req, res, next){
+	res.render('index' , {title: 'Home', categories: db.getCategories()});	
+});
 
-app.get('/', function (req,res,next){
-	res.render('index' , {title: 'title', product:Product.getCatergories()});	
-	
-})
-
-app.get('/catergories/:name', function (req, res, next){
-	temp = req.params.name;
-	res.render('catergories', {thecatergory: Product.getItems(req.params.name), product: Product.getCatergories()});
-})
-
-app.delete('/catergories/:name', function (req, res, next){
-	Product.deleteItem(temp, req.params.name);	
-	res.redirect('/');
-})
-
-app.post('/catergories/', function(req,res,next){
-	Product.addItem(temp, req.body.name);
-	res.redirect('/');
-})
+app.use('/categories', require('./routes/categories'));
 
 
-app.post('/index',function(req,res,next){
-	Product.addCatergory(req.body.name);
-	res.redirect('/');	
-})
-
-app.delete('/index/:name', function (req, res, next){
-	Product.deleteCatergory(req.params.name);
-	res.redirect('/');
-})
-
-
-
-app.listen(3000);
+app.listen(process.env.PORT, function(){
+  console.log('listening on port ' + process.env.PORT);
+});

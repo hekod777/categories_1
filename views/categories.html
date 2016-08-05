@@ -1,0 +1,25 @@
+{% extends './layout.html'%}
+{% block main %}
+
+<ul class='list-group'>
+	{% for idx, product in products %}
+    <li class='list-group-item'>
+    	{{product.name}}
+        <br>
+        <form action = '/categories/{{category}}/products/{{idx}}?_method=DELETE' method = 'POST'>
+        <button class='btn btn-danger' type='submit'> Delete this item</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+
+<form action = '/categories/{{category}}/products' method = 'POST'>
+  <div class='form-group'>
+    <label for='name_field'>Product</label>
+    <input class='form-control' name='name' type = 'text' id = 'name_field'/>
+  </div>
+  <input class='btn btn-primary' type='submit' value='Insert Product'>
+</form>
+
+{% endblock %}

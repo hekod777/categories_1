@@ -1,26 +1,19 @@
 {% extends './layout.html' %}
 
 {%block main%}
-<p>this is the home page</p>
+  <div class='well'>
+    Welcome!!
+  </div>
 
-<ul>
-        {% for item in product %}
-        <li>
-			<a href = './catergories/{{item}}'>{{item}}<a>
-        </br>
-        <form action = '/index/{{item}}?_method=DELETE' method = 'Post'>
-        <button type = 'sumbit'>Delete this Category</button>
-        </form>
-        </li>
-        {% endfor %}
-</ul>
-		
+      
 
-<form action = '/index' method = 'POST'>
-<label for = 'name_field'>Add catergory name: </label>
-<input name = 'name' type = 'text' id = 'name_field'/>
-<input type = 'submit' value = 'sumbit!'>
-</form>
+  <form action = '/categories' method = 'POST'>
+    <div class='form-group'>
+      <label for = 'name_field'>Category Name</label>
+      <input class='form-control' name = 'name' type = 'text' id = 'name_field'/>
+    </div>
+    <input class='btn btn-primary' type = 'submit' value = 'Save Category'>
+  </form>
 
 
 {%endblock%}
